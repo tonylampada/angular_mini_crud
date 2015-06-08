@@ -37,6 +37,7 @@ angular.module('local_table_storage').factory('LocalTableStorage', function(){
             registros.push(obj);
         }
         localStorage.setItem(lts.tablename, JSON.stringify(registros));
+        return angular.copy(obj);
     }
 
     function remove(id){

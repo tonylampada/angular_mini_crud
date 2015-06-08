@@ -6,12 +6,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
     <script src="script.js"></script>
     <script src="local_table_storage.js"></script>
+    <script src="crudapi.js"></script>
+    <script src="mockutils.js"></script>
   </head>
 
   <body ng-app="myapp" ng-controller="MyCtrl">
-    <p>Esta página demonstra como usar o localStorage, encapsulado dentro de um serviço angular</p>
-    <p>Repare que o nosso serviço, LocalTableStorage, retorna uma função, e a gente usa essa função como um construtor de um objeto que faz de conta que é um banco de dados.</p>
-    <p>Ah, esses dados ficam persistidos no seu browser. Se vc der refresh nessa pagina, os dados continuam aih.</p>
+    <p>Agora a gente tem um CrudApi que fala com o nosso backend via AJAX (#SQN!)</p>
+    <p>Nosso CrudApi é um serviço mega genérico que sabe fazer crud de qualquer coisa</p>
+    <p>É possível implementar um desse de verdade independente da sua tecnologia de backend.</p>
+    <p>MAS ATENÇÃO: seu backend vai ter que tomar as devidas precauções de segurança pra isso!</p>
+    <div>
+      <span ng-show="loading">Buscando dados...</span>
+      <span ng-show="saving">Salvando...</span>
+    </div>
     <button ng-click="add_tony()">+Tony</button>
     <button ng-click="add_maria()">+Maria</button>
     <table>

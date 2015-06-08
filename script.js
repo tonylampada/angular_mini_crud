@@ -1,55 +1,66 @@
-angular.module('myapp', ['local_table_storage']);
+angular.module('myapp', ['crudapi']);
 
-angular.module('myapp').controller('MyCtrl', function($scope, LocalTableStorage){
+angular.module('myapp').controller('MyCtrl', function($scope, CrudApi){
   /**
    * Sim, esse código com um monte de estado e lógica no controller tá cagado.
    * Mas não interessa pq o código abaixo é só pra demonstrar 
-   * como usa o LocalTableStorage. Aquele sim, precisa estar bonito.
+   * como usa o CrudApi. Aquele sim, precisa estar bonito.
    */
   
-  var tabela_pessoas = new LocalTableStorage('Pessoa');
-  var tabela_animais = new LocalTableStorage('Animal');
-  
   $scope.add_tony = function(){
-    tabela_pessoas.save({
-      nome: 'tony',
-      idade: 33,
+    var tony = {nome: 'Tony Lampada', idade: 33};
+    $scope.saving = true;
+    CrudApi.save('Pessoa', tony).success(function(){
+      $scope.saving = false;
+      load_pessoas();
     });
-    update_pessoas();
   }
   
   $scope.add_maria = function(){
-    tabela_pessoas.save({
-      nome: 'maria',
-      idade: 47,
+    var maria = {nome: 'Maria Rita', idade: 19};
+    $scope.saving = true;
+    CrudApi.save('Pessoa', maria).success(function(){
+      $scope.saving = false;
+      load_pessoas();
     });
-    update_pessoas();
   }
   
   $scope.add_loro = function(){
-    tabela_animais.save({
-      nome: 'Loro José',
-      raca: 'papagaio',
+    var loro = {nome: 'Loiro  Josué', raca: 'arara'};
+    $scope.saving = true;
+    CrudApi.save('Animal', loro).success(function(){
+      $scope.saving = false;
+      load_animais();
     });
-    update_animais();
+
   }
   
   $scope.add_rex = function(){
-    tabela_animais.save({
-      nome: 'Rex da Silva',
-      raca: 'canino',
+    var rex = {nome: 'Rex Pitbull', raca: 'cachorro'};
+    $scope.saving = true;
+    CrudApi.save('Animal', rex).success(function(){
+      $scope.saving = false;
+      load_animais();
     });
-    update_animais();
+
   }
   
-  function update_pessoas(){
-    $scope.pessoas = tabela_pessoas.list();
+  function load_pessoas(){
+    $scope.loading = true;
+    CrudApi.list('Pessoa').success(function(pessoas){
+      $scope.pessoas = pessoas;
+      $scope.loading = false;
+    });
   }
 
-  function update_animais(){
-    $scope.animais = tabela_animais.list();
+  function load_animais(){
+    $scope.loading = true;
+    CrudApi.list('Animal').success(function(animais){
+      $scope.animais = animais;
+      $scope.loading = false;
+    });
   }
 
-  update_pessoas();
-  update_animais();
+  load_pessoas();
+  load_animais();
 })
