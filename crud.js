@@ -60,6 +60,7 @@ angular.module('crud').factory('CrudModel', function(CrudApi){
     create: create,
     update: update,
     remove: remove,
+    get_field_name: get_field_name,
     show_crud_form: show_crud_form,
   });
   
@@ -90,6 +91,14 @@ angular.module('crud').factory('CrudModel', function(CrudApi){
       cm.entities.splice(index, 1);
       cm.is_deleting = false;
     });
+  }
+  
+  function get_field_name(field){
+    var cm = this;
+    if(cm.options && cm.options.fields_dictionary && cm.options.fields_dictionary[field]){
+      return cm.options.fields_dictionary[field];
+    }
+    return field;
   }
   
   function show_crud_form(){

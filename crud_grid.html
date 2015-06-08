@@ -10,10 +10,11 @@
       <button class="btn btn-primary" ng-click="cm.remove()">Deletar</button>
     </div>
   </div>
-  <table class="table table-bordered table-center">
+  <div class="panel panel-div" >
+    <table class="table table-bordered table-center">
     <tr>
       <th></th>
-      <th ng-repeat="field in cm.model.crud_fields">{{field}}</th>
+      <th ng-repeat="field in cm.model.crud_fields">{{cm.get_field_name(field)}}</th>
     </tr>
     <tr ng-repeat="entity in cm.entities">
       <td><input name="selected_entity" 
@@ -26,4 +27,6 @@
       </td>
     </tr>
   </table>
+  </div>
+  
 </div>

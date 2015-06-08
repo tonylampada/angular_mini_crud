@@ -20,7 +20,7 @@ angular.module('models').factory('Pessoa', function(){
     this.idade = idade;
   }
   
-  Pessoa.crud_fields = ['nome', 'idade'];
+  Pessoa.crud_fields = ['id', 'nome', 'idade'];
   
   angular.extend(Pessoa.prototype, {
     aniversario: aniversario
@@ -43,7 +43,7 @@ angular.module('models').factory('Animal', function(){
     this.raca = raca;
   }
 
-  Animal.crud_fields = ['nome', 'raca'];
+  Animal.crud_fields = ['id', 'nome', 'raca'];
   
   angular.extend(Animal.prototype, {
     corre: corre
