@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+    <script src="script.js"></script>
+    <script src="local_table_storage.js"></script>
+  </head>
+
+  <body ng-app="myapp" ng-controller="MyCtrl">
+    <p>Esta página demonstra como usar o localStorage, encapsulado dentro de um serviço angular</p>
+    <p>Repare que o nosso serviço, LocalTableStorage, retorna uma função, e a gente usa essa função como um construtor de um objeto que faz de conta que é um banco de dados.</p>
+    <p>Ah, esses dados ficam persistidos no seu browser. Se vc der refresh nessa pagina, os dados continuam aih.</p>
+    <button ng-click="add_tony()">+Tony</button>
+    <button ng-click="add_maria()">+Maria</button>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>nome</th>
+        <th>idade</th>
+      </tr>
+      <tr ng-repeat="p in pessoas">
+        <td>{{p.id}}</td>
+        <td>{{p.nome}}</td>
+        <td>{{p.idade}}</td>
+      </tr>
+    </table>
+    <button ng-click="add_loro()">+Loro</button>
+    <button ng-click="add_rex()">+Rex</button>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>nome</th>
+        <th>raca</th>
+      </tr>
+      <tr ng-repeat="a in animais">
+        <td>{{a.id}}</td>
+        <td>{{a.nome}}</td>
+        <td>{{a.raca}}</td>
+      </tr>
+    </table>
+  </body>
+
+</html>
