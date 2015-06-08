@@ -32,18 +32,13 @@ angular.module('crudapi').factory('CrudApi', function(LocalTableStorage, MockUti
     function get(classname, id, options){
         var lts = new LocalTableStorage(classname);
         var obj = lts.get(id);
-        var entity;
-        if(api.models && api.models[classname]){
-          entity = _obj2entity(classname, obj);
-        } else {
-          entity = obj
-        }
-        return MockUtil.mockajax(entity);
+        return MockUtil.mockajax(_obj2entity(classname, obj));
     }
 
     function save(classname, obj){
         var lts = new LocalTableStorage(classname);
-        return MockUtil.mockajax(lts.save(obj));
+        obj = lts.save(obj);
+        return MockUtil.mockajax(_obj2entity(classname, obj));
     }
 
     function remove(classname, id){
@@ -52,8 +47,13 @@ angular.module('crudapi').factory('CrudApi', function(LocalTableStorage, MockUti
     }
     
     function _obj2entity(classname, obj){
-      var entity = new api.models[classname](); // constroi um novo "Pessoa" da vida
-      angular.extend(entity, obj); // copia os atributos de obj para entity
+      var entity;
+      if(api.models && api.models[classname]){
+        entity = new api.models[classname](); // constroi um novo "Pessoa" da vida
+        angular.extend(entity, obj); // copia os atributos de obj para entity
+      } else {
+        entity = obj
+      }
       return entity;
     }
 

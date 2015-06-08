@@ -23,7 +23,7 @@
             ng-value="entity">
       </td>
       <td ng-repeat="field in cm.model.crud_fields">
-        {{entity[field]}}
+        {{entity[field.name]}}
       </td>
     </tr>
   </table>

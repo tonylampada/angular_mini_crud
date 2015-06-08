@@ -1,3 +1,12 @@
 <div>
-  formulario do crud
+  <div ng-repeat="field in cm.model.crud_fields" ng-include="cm.get_field_include(field)"></div>
+  <div class="panel-button">
+    <div class="go-left left">
+      <span ng-show="cm.is_saving">salvando...</span>
+    </div>
+    <div class="btn-right go-right">
+      <button class="btn" ng-click="cm.cancel()">Cancelar</button>
+      <button class="btn btn-primary" ng-click="cm.save()">Salvar</button>
+    </div>
+  </div>
 </div>
