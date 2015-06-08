@@ -8,45 +8,21 @@
     <script src="local_table_storage.js"></script>
     <script src="crudapi.js"></script>
     <script src="mockutils.js"></script>
+    <script src="crud.js"></script>
+    <script src="models.js"></script>
   </head>
 
   <body ng-app="myapp" ng-controller="MyCtrl">
-    <p>Agora a gente tem um CrudApi que fala com o nosso backend via AJAX (#SQN!)</p>
-    <p>Nosso CrudApi é um serviço mega genérico que sabe fazer crud de qualquer coisa</p>
-    <p>É possível implementar um desse de verdade independente da sua tecnologia de backend.</p>
-    <p>MAS ATENÇÃO: seu backend vai ter que tomar as devidas precauções de segurança pra isso!</p>
-    <div>
-      <span ng-show="loading">Buscando dados...</span>
-      <span ng-show="saving">Salvando...</span>
+    <p>Até aqui a gente tava só afiando o machado. Agora sim a gente começa a derrubar a árvore</p>
+    <p>O que a gente quer é uma diretiva que dê pra usar mais ou menos assim:</p>
+    <pre>&lt;crud model="models.Pessoa" options="crud_options"&gt;&lt;/crud&gt;</pre>
+    <p>Onde "models.Pessoa" tem informações dobre a estrutura da entidade que eu quero persistir, e "crud_options" tem customizações adicionais sobre como eu quero que o crud se pareça e se comporte</p>
+    <p>Essa diretiva muitoloca vai mostrar a tabela, o form de criação / edição, etc. Bora começar?</p>
+    
+    <div style="border: 1px solid; padding: 10px">
+      <crud model="models.Pessoa" options="crud_options"></crud>
     </div>
-    <button ng-click="add_tony()">+Tony</button>
-    <button ng-click="add_maria()">+Maria</button>
-    <table>
-      <tr>
-        <th>id</th>
-        <th>nome</th>
-        <th>idade</th>
-      </tr>
-      <tr ng-repeat="p in pessoas">
-        <td>{{p.id}}</td>
-        <td>{{p.nome}}</td>
-        <td>{{p.idade}}</td>
-      </tr>
-    </table>
-    <button ng-click="add_loro()">+Loro</button>
-    <button ng-click="add_rex()">+Rex</button>
-    <table>
-      <tr>
-        <th>id</th>
-        <th>nome</th>
-        <th>raca</th>
-      </tr>
-      <tr ng-repeat="a in animais">
-        <td>{{a.id}}</td>
-        <td>{{a.nome}}</td>
-        <td>{{a.raca}}</td>
-      </tr>
-    </table>
+
   </body>
 
 </html>
