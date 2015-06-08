@@ -47,6 +47,7 @@ angular.module('local_table_storage').factory('LocalTableStorage', function(){
         if(index >=0){
             registros.splice(index, 1);
         }
+        localStorage.setItem(lts.tablename, JSON.stringify(registros));
     }
 
     function get(id){
