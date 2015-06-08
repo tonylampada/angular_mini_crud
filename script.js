@@ -1,6 +1,7 @@
 angular.module('myapp', ['models', 'crud']);
 
-angular.module('myapp').controller('MyCtrl', function($scope, models){
+angular.module('myapp').controller('MyCtrl', function($scope, models, CrudApi){
+  CrudApi.configure({models: models});
   $scope.models = models;
   $scope.crud_options = {
     fields_dictionary: {
