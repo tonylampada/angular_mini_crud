@@ -8,7 +8,6 @@ angular.module('crudapi').factory('CrudApi', function(LocalTableStorage, MockUti
     };
 
     function list(classname, filters, options){
-      debugger;
         var lts = new LocalTableStorage(classname);
         // Ignora os filtros. nosso banco nao sabe fazer SELECT
         return MockUtil.mockajax(lts.list());

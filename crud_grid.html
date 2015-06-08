@@ -1,3 +1,29 @@
 <div>
-  tabelinha do crud
+  <div class="panel-button">
+    <div class="go-left left">
+      <span ng-show="cm.is_listing">listando...</span>
+      <span ng-show="cm.is_deleting">deletando...</span>
+    </div>
+    <div  class=" btn-right go-right">
+      <button class="btn btn-primary" ng-click="cm.create()">Criar</button>
+      <button class="btn btn-primary" ng-click="cm.update()">Editar</button>
+      <button class="btn btn-primary" ng-click="cm.remove()">Deletar</button>
+    </div>
+  </div>
+  <table class="table table-bordered table-center">
+    <tr>
+      <th></th>
+      <th ng-repeat="field in cm.model.crud_fields">{{field}}</th>
+    </tr>
+    <tr ng-repeat="entity in cm.entities">
+      <td><input name="selected_entity" 
+            type="radio" 
+            ng-model="cm.selected_entity" 
+            ng-value="entity">
+      </td>
+      <td ng-repeat="field in cm.model.crud_fields">
+        {{entity[field]}}
+      </td>
+    </tr>
+  </table>
 </div>
