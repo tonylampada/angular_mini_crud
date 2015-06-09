@@ -52,7 +52,6 @@ angular.module('crud').factory('CrudModel', function(CrudApi){
     this.options = options || {};
     this.entities = [];
     this.entity = null;
-    this.entity_backup = null;
     this.is_creating = false;
     this.is_editing = false;
     this.is_listing = false;
@@ -90,12 +89,13 @@ angular.module('crud').factory('CrudModel', function(CrudApi){
   
   function update(){
     var cm = this;
-    //TODO
+    cm.is_creating = false;
+    cm.is_editing = true;
+    cm.entity = angular.copy(cm.selected_entity)
   }
   
   function remove(){
     var cm = this;
-    debugger
     cm.is_deleting = true;
     CrudApi.remove(cm.model.name, cm.selected_entity.id).success(function(){
       var index = cm.entities.indexOf(cm.selected_entity);
@@ -108,7 +108,11 @@ angular.module('crud').factory('CrudModel', function(CrudApi){
     var cm = this;
     cm.is_saving = true;
     CrudApi.save(cm.model.name, cm.entity).success(function(savedentity){
-      cm.entities.push(savedentity);
+      if(cm.is_creating){
+        cm.entities.push(savedentity);
+      } else {
+        angular.extend(cm.selected_entity, cm.entity);
+      }
       cm.is_saving = false;
       cm.entity = null;
       cm.entity_backup = null;
