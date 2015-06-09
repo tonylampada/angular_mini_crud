@@ -15,14 +15,13 @@
 
   <body ng-app="myapp" ng-controller="MyCtrl">
     <div class="panel panel-div">
-      <p>E por fim o update. Repare que no CrudModel.update() a gente 
-      criou uma cópia do objeto pra editar.
-      Isso é pra dar ao usuário a chance de cancelar suas alterações.
-      </p>
+      <p>Agora vc escolhe: Pessoas ou Animais</p>
     </div>
 
+    <button ng-click="cachorrada()">Cachorrada</button>
+    <button ng-click="gentaiada()">Gentaiada</button>
     <div style="border: 1px solid; padding: 10px">
-      <crud model="models.Pessoa" options="crud_options"></crud>
+      <crud model="model" options="crud_options"></crud>
     </div>
 
   </body>

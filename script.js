@@ -11,4 +11,15 @@ angular.module('myapp').controller('MyCtrl', function($scope, models, CrudApi){
       raca: 'Raça',
     },
   };
+  
+  $scope.gentaiada = function(){
+    $scope.model = models.Pessoa;
+  };
+  
+  $scope.cachorrada = function(){
+    $scope.model = models.Animal;
+  };
+  
+  $scope.gentaiada();
+  
 });

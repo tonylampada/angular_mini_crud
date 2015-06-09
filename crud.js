@@ -28,7 +28,11 @@ angular.module('crud').directive('crudGrid', function(){
     },
     templateUrl: 'crud_grid.html',
     controller: function($scope){
-      $scope.cm.list();
+      $scope.$watch('cm', function(){
+        if($scope.cm){
+          $scope.cm.list();
+        }
+      })
     }
   };
 });
